@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:foodly_app/app/app.locator.dart';
 import 'package:foodly_app/ui/common/app_colors.dart';
-import 'package:foodly_app/ui/setup/setup_bottom_sheet_ui.dart';
-import 'package:foodly_app/ui/setup/setup_dialog_ui.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app/app.router.dart';
 
 void main() {
   setupLocator();
-  setupDialogUi();
-  setupBottomSheetUi();
-
   runApp(const MyApp());
 }
 
