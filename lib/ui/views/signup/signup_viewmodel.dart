@@ -25,7 +25,6 @@ class SignUpViewModel extends AuthenticationViewModel{
   }
 
   void navigateToLogin(){
-    print("hi");
     navigationService.replaceWith(Routes.loginView);
   }
 
