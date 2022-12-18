@@ -1,10 +1,14 @@
 import 'package:foodly_app/ui/views/login/login_view.dart';
+import 'package:foodly_app/ui/views/signup/signup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 // @stacked-import
 
 @StackedApp(routes: [
   MaterialRoute(page: LoginView, initial: true),
+  MaterialRoute(page: SignupView, ),
+
+
   // @stacked-route
 ], dependencies: [
   LazySingleton(classType: NavigationService),

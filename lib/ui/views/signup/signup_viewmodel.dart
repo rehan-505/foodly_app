@@ -3,8 +3,8 @@ import 'package:stacked/stacked.dart';
 import '../../../app/app.router.dart';
 import '../../base/authentication_viewmodel.dart';
 
-class LoginViewModel extends AuthenticationViewModel{
-  LoginViewModel() : super(successRoute: Routes.loginView);
+class SignUpViewModel extends AuthenticationViewModel{
+  SignUpViewModel() : super(successRoute: Routes.loginView);
 
   bool passVisible = true;
 
@@ -24,8 +24,12 @@ class LoginViewModel extends AuthenticationViewModel{
     return;
   }
 
-  void navigateToSignUp() =>
-      navigationService.replaceWith(Routes.signupView);
+  void navigateToLogin(){
+    print("hi");
+    navigationService.replaceWith(Routes.loginView);
+  }
 
+  void navigateBack() =>
+      navigationService.back();
 
 }

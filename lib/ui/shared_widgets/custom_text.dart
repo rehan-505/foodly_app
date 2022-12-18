@@ -27,8 +27,7 @@ class CustomText extends StatelessWidget {
       : style = captionStyle,
         alignment = align;
 
-  CustomText.body(this.text,
-      {Color color = kcDarkGreyColor, TextAlign align = TextAlign.start})
+  CustomText.body(this.text, {Color color = kcDarkGreyColor, TextAlign align = TextAlign.start})
       : style = bodyStyle.copyWith(color: color),
         alignment = align;
 

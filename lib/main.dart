@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foodly_app/app/app.locator.dart';
 import 'package:foodly_app/ui/common/app_colors.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:foodly_app/ui/views/login/login_view.dart';
+import 'package:foodly_app/ui/views/signup/signup_view.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app/app.router.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Routes.loginView,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
+      // home: LoginView(),
     );
   }
 }

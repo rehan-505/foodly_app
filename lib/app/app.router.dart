@@ -5,15 +5,22 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:flutter/material.dart' as _i4;
 import 'package:flutter/material.dart';
 import 'package:foodly_app/ui/views/login/login_view.dart' as _i2;
+import 'package:foodly_app/ui/views/signup/signup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i3;
+import 'package:stacked_services/stacked_services.dart' as _i5;
 
 class Routes {
   static const loginView = '/';
 
-  static const all = <String>{loginView};
+  static const signupView = '/signup-view';
+
+  static const all = <String>{
+    loginView,
+    signupView,
+  };
 }
 
 class StackedRouter extends _i1.RouterBase {
@@ -21,16 +28,32 @@ class StackedRouter extends _i1.RouterBase {
     _i1.RouteDef(
       Routes.loginView,
       page: _i2.LoginView,
-    )
+    ),
+    _i1.RouteDef(
+      Routes.signupView,
+      page: _i3.SignupView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.LoginView: (data) {
+      final args = data.getArgs<LoginViewArguments>(
+        orElse: () => const LoginViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) =>  _i2.LoginView(),
+        builder: (context) => _i2.LoginView(key: args.key),
         settings: data,
       );
-    }
+    },
+    _i3.SignupView: (data) {
+      final args = data.getArgs<SignupViewArguments>(
+        orElse: () => const SignupViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => _i3.SignupView(key: args.key),
+        settings: data,
+      );
+    },
   };
 
   @override
@@ -39,15 +62,45 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i3.NavigationService {
-  Future<dynamic> navigateToLoginView([
+class LoginViewArguments {
+  const LoginViewArguments({this.key});
+
+  final _i4.Key? key;
+}
+
+class SignupViewArguments {
+  const SignupViewArguments({this.key});
+
+  final _i4.Key? key;
+}
+
+extension NavigatorStateExtension on _i5.NavigationService {
+  Future<dynamic> navigateToLoginView({
+    _i4.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.loginView,
+        arguments: LoginViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToSignupView({
+    _i4.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.signupView,
+        arguments: SignupViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
