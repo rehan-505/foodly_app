@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kcPrimaryColor,
         primarySwatch: Colors.green
       ),
-      initialRoute: Routes.loginView,
+
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
       // home: LoginView(),
