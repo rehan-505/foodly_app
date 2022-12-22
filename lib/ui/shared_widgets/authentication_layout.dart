@@ -2,6 +2,7 @@ import 'package:auth_buttons/auth_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:foodly_app/ui/common/app_styles.dart';
 import 'package:foodly_app/ui/shared_widgets/custom_text.dart';
+import '../../enums/authscreen_type.dart';
 import '../common/app_colors.dart';
 import '../common/ui_helpers.dart';
 
@@ -13,12 +14,13 @@ class AuthenticationLayout extends StatelessWidget {
   final Widget? form;
   final bool showTermsText;
   final void Function()? onMainButtonTapped;
-  final void Function()? onCreateAccountTapped;
+  final void Function()? onGoToOtherPageTapped;
   final void Function()? onForgotPassword;
   final void Function()? onBackPressed;
   final void Function()? onSignInWithGoogle;
   final String? validationMessage;
   final bool busy;
+  final AuthScreenType authScreenType;
 
   const AuthenticationLayout({
     Key? key,
@@ -27,13 +29,13 @@ class AuthenticationLayout extends StatelessWidget {
     this.mainButtonTitle,
     this.form,
     this.onMainButtonTapped,
-    this.onCreateAccountTapped,
+    this.onGoToOtherPageTapped,
     this.onForgotPassword,
     this.onBackPressed,
     this.onSignInWithGoogle,
     this.validationMessage,
     this.showTermsText = false,
-    this.busy = false, required this.appBarTitle,
+    this.busy = false, required this.appBarTitle, required this.authScreenType,
   }) : super(key: key);
 
   @override
@@ -50,7 +52,9 @@ class AuthenticationLayout extends StatelessWidget {
           Row(
             mainAxisAlignment: onBackPressed==null ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween,
             children:  [
-              onBackPressed==null ? const SizedBox() : const Icon(Icons.arrow_back_ios),
+              onBackPressed==null ? const SizedBox() : InkWell(
+                  onTap: onBackPressed,
+                  child: const Icon(Icons.arrow_back_ios)),
               Text(appBarTitle, style: heading4Style,),
               onBackPressed==null ? const SizedBox() : const Visibility(
                   visible: false,
@@ -75,6 +79,7 @@ class AuthenticationLayout extends StatelessWidget {
               ),
             ),
           ),
+
           verticalSpaceRegular,
           form!,
           verticalSpaceRegular,
@@ -118,20 +123,20 @@ class AuthenticationLayout extends StatelessWidget {
             ),
           ),
           verticalSpaceRegular,
-          if (onCreateAccountTapped != null)
             GestureDetector(
-              onTap: onCreateAccountTapped,
+              onTap: onGoToOtherPageTapped,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text('Don\'t have an account?',
+                children:  [
+                  Text(authScreenType == AuthScreenType.signIn ? 'Don\'t have an account?' : "Already have an account?",
                       style: TextStyle(
                           fontSize: 12
                       )
                   ),
                   horizontalSpaceTiny,
                   Text(
-                    'Create an account',
+                    authScreenType == AuthScreenType.signIn ?
+                    'Create an account' : "Login",
                     style: TextStyle(
                       color: kcPrimaryColor,
                       fontSize: 12

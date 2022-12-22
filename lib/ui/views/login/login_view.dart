@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodly_app/enums/authscreen_type.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -21,22 +22,22 @@ class LoginView extends StatelessWidget with $LoginView {
             body: AuthenticationLayout(
               busy: model.isBusy,
               onMainButtonTapped: model.saveData,
-              onCreateAccountTapped: (){},
-              validationMessage: "",
+              onGoToOtherPageTapped: model.navigateToSignUp,
+              validationMessage: null,
               title: 'Welcome',
               subtitle: 'Enter your Phone number or Email address for sign in. Enjoy your food :)',
               mainButtonTitle: 'SIGN IN',
               form: Column(
                 children: [
                   TextField(
-                    decoration: InputDecoration(label: Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
+                    decoration: const InputDecoration(label: Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
                         suffixIcon: Icon(Icons.email, color: Colors.grey,)
                     ),
                     controller: emailController,
                   ),
                   TextField(
                     obscureText: model.passVisible,
-                    decoration: InputDecoration(label: Text('PASSWORD', style: TextStyle(fontSize: 12),),hintText: "Enter Your Password here",
+                    decoration: InputDecoration(label: const Text('PASSWORD', style: TextStyle(fontSize: 12),),hintText: "Enter Your Password here",
                     suffixIcon: InkWell(
                         onTap: model.eyePressed,
                         child: Icon(Icons.remove_red_eye, color: model.passVisible ? Colors.grey : null,))
@@ -47,7 +48,7 @@ class LoginView extends StatelessWidget with $LoginView {
               ),
               onForgotPassword: () {},
               onSignInWithGoogle: (){},
-              appBarTitle: 'Sign In',
+              appBarTitle: 'Sign In', authScreenType: AuthScreenType.signIn,
             )),
     );
   }
