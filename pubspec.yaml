@@ -37,6 +37,7 @@ dependencies:
   
   stacked: ^3.0.0
   stacked_services: ^0.9.3
+  auth_buttons: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -59,10 +60,18 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
 
+  fonts:
+    - family: SFProText
+      fonts:
+        - asset: assets/fonts/FontsFree-Net-SFProText-Regular.ttf
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets :
+    - assets/fonts/
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

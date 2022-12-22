@@ -4,20 +4,21 @@ import 'package:flutter/material.dart';
 
 const double _tinySize = 5.0;
 const double _smallSize = 10.0;
+const double _regularSize = 18.0;
 const double _mediumSize = 25.0;
 const double _largeSize = 50.0;
-const double _massiveSize = 120.0;
 
 const Widget horizontalSpaceTiny = SizedBox(width: _tinySize);
 const Widget horizontalSpaceSmall = SizedBox(width: _smallSize);
+const Widget horizontalSpaceRegular = SizedBox(width: _regularSize);
 const Widget horizontalSpaceMedium = SizedBox(width: _mediumSize);
 const Widget horizontalSpaceLarge = SizedBox(width: _largeSize);
 
 const Widget verticalSpaceTiny = SizedBox(height: _tinySize);
 const Widget verticalSpaceSmall = SizedBox(height: _smallSize);
+const Widget verticalSpaceRegular = SizedBox(height: _regularSize);
 const Widget verticalSpaceMedium = SizedBox(height: _mediumSize);
 const Widget verticalSpaceLarge = SizedBox(height: _largeSize);
-const Widget verticalSpaceMassive = SizedBox(height: _massiveSize);
 
 Widget spacedDivider = Column(
   children: const <Widget>[
@@ -77,3 +78,15 @@ double getResponsiveFontSize(BuildContext context,
   return responsiveSize;
 }
 
+///responsive horizontal space
+double resWidth(BuildContext context, double width, ){
+  return screenWidth(context) * (width/375);
+}
+
+///responsive vertical space
+double resHeight(BuildContext context, double height, ){
+  return screenHeight(context) * (height/812);
+}
+
+double screenWidthPercentage(BuildContext context, {double percentage = 1}) =>
+    screenWidth(context) * percentage;
