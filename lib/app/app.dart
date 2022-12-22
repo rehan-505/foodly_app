@@ -1,3 +1,4 @@
+import 'package:foodly_app/ui/views/forgot_pass/forgot_pass_view.dart';
 import 'package:foodly_app/ui/views/login/login_view.dart';
 import 'package:foodly_app/ui/views/signup/signup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -7,6 +8,7 @@ import 'package:stacked_services/stacked_services.dart';
 @StackedApp(routes: [
   MaterialRoute(page: LoginView, initial: true),
   MaterialRoute(page: SignupView, ),
+  MaterialRoute(page: ForgotPassView),
 
 
   // @stacked-route

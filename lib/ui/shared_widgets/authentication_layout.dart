@@ -123,7 +123,7 @@ class AuthenticationLayout extends StatelessWidget {
             ),
           ),
           verticalSpaceRegular,
-            GestureDetector(
+          authScreenType == AuthScreenType.forgetPass ? SizedBox() :GestureDetector(
               onTap: onGoToOtherPageTapped,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -150,13 +150,14 @@ class AuthenticationLayout extends StatelessWidget {
               'By signing up you agree to our terms, conditions and privacy policy.',
             ),
           verticalSpaceMedium,
+          authScreenType == AuthScreenType.forgetPass ? SizedBox() :
           Align(
               alignment: Alignment.center,
               child: CustomText.body(
                 'Or',
               )),
           verticalSpaceRegular,
-          FacebookAuthButton(
+          authScreenType == AuthScreenType.forgetPass ? SizedBox() :FacebookAuthButton(
             materialStyle: const ButtonStyle(
                 alignment: Alignment.centerLeft
 
@@ -174,7 +175,7 @@ class AuthenticationLayout extends StatelessWidget {
           ),
 
           verticalSpaceRegular,
-          GoogleAuthButton(
+          authScreenType == AuthScreenType.forgetPass ? SizedBox() :GoogleAuthButton(
             onPressed: onSignInWithGoogle ?? () {},
             text: '        CONNECT WITH GOOGLE',
             style: const AuthButtonStyle(

@@ -1,10 +1,9 @@
-import 'package:stacked/stacked.dart';
 
 import '../../../app/app.router.dart';
 import '../../base/authentication_viewmodel.dart';
 
-class LoginViewModel extends AuthenticationViewModel{
-  LoginViewModel() : super(successRoute: Routes.loginView);
+class ForgotPassViewModel extends AuthenticationViewModel{
+  ForgotPassViewModel() : super(successRoute: Routes.loginView);
 
   bool passVisible = true;
 
@@ -12,8 +11,6 @@ class LoginViewModel extends AuthenticationViewModel{
     passVisible = !passVisible;
     notifyListeners();
   }
-
-
 
   Future saveData() async{
 
@@ -29,8 +26,9 @@ class LoginViewModel extends AuthenticationViewModel{
   void navigateToSignUp() =>
       navigationService.replaceWith(Routes.signupView);
 
-  void navigateToForgotPass() =>
-      navigationService.navigateTo(Routes.forgotPassView);
 
+  void navigateBack(){
+    navigationService.back();
+  }
 
 }

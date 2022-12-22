@@ -46,7 +46,7 @@ class LoginView extends StatelessWidget with $LoginView {
                   ),
                 ],
               ),
-              onForgotPassword: () {},
+              onForgotPassword: model.navigateToForgotPass,
               onSignInWithGoogle: (){},
               appBarTitle: 'Sign In', authScreenType: AuthScreenType.signIn,
             )),
