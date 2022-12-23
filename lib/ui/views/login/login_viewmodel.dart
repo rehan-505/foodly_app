@@ -6,8 +6,7 @@ import '../../../services/auth_service.dart';
 import '../../base/authentication_viewmodel.dart';
 
 class LoginViewModel extends AuthenticationViewModel{
-  LoginViewModel() : super(successRoute: Routes.loginView);
-  final AuthService authService = locator<AuthService>();
+  LoginViewModel() : super();
 
 
   bool passVisible = true;

@@ -21,17 +21,17 @@ class ForgotPassView extends StatelessWidget with $ForgotPassView {
           body: AuthenticationLayout(
             busy: model.isBusy,
             onMainButtonTapped: model.saveData,
-            validationMessage: null,
+            validationMessage: model.validationMessage,
             title: 'Forgot Password',
             subtitle: 'Enter your email address and we will send you a reset instructions.',
             mainButtonTitle: 'RESET PASSWORD',
             form: Column(
               children: [
                 TextField(
-                  decoration: const InputDecoration(label: Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
-                      suffixIcon: Icon(Icons.email, color: Colors.grey,)
+                  decoration:  InputDecoration(errorText: model.emailErrorText,label: const Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
+                      suffixIcon: const Icon(Icons.email, color: Colors.grey,)
                   ),
-                  controller: emailController,
+                  onChanged: model.validateEmail,
                 ),
               ],
             ),

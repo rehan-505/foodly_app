@@ -5,15 +5,16 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
 import 'package:flutter/material.dart';
 import 'package:foodly_app/ui/views/forgot_pass/forgot_pass_view.dart' as _i4;
 import 'package:foodly_app/ui/views/home/home_view.dart' as _i6;
 import 'package:foodly_app/ui/views/login/login_view.dart' as _i2;
 import 'package:foodly_app/ui/views/onboarding/onboarding_view.dart' as _i5;
+import 'package:foodly_app/ui/views/reset_email/reset_email_view.dart' as _i7;
 import 'package:foodly_app/ui/views/signup/signup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i8;
+import 'package:stacked_services/stacked_services.dart' as _i9;
 
 class Routes {
   static const loginView = '/login-view';
@@ -26,12 +27,15 @@ class Routes {
 
   static const homeView = '/home-view';
 
+  static const resetEmailView = '/reset-email-view';
+
   static const all = <String>{
     loginView,
     signupView,
     forgotPassView,
     onboardingView,
     homeView,
+    resetEmailView,
   };
 }
 
@@ -56,6 +60,10 @@ class StackedRouter extends _i1.RouterBase {
     _i1.RouteDef(
       Routes.homeView,
       page: _i6.HomeView,
+    ),
+    _i1.RouteDef(
+      Routes.resetEmailView,
+      page: _i7.ResetEmailView,
     ),
   ];
 
@@ -96,6 +104,14 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
+    _i7.ResetEmailView: (data) {
+      final args = data.getArgs<ResetEmailViewArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) =>
+            _i7.ResetEmailView(key: args.key, email: args.email),
+        settings: data,
+      );
+    },
   };
 
   @override
@@ -107,18 +123,29 @@ class StackedRouter extends _i1.RouterBase {
 class LoginViewArguments {
   const LoginViewArguments({this.key});
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 }
 
 class ForgotPassViewArguments {
   const ForgotPassViewArguments({this.key});
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 }
 
-extension NavigatorStateExtension on _i8.NavigationService {
+class ResetEmailViewArguments {
+  const ResetEmailViewArguments({
+    this.key,
+    required this.email,
+  });
+
+  final _i8.Key? key;
+
+  final String email;
+}
+
+extension NavigatorStateExtension on _i9.NavigationService {
   Future<dynamic> navigateToLoginView({
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -148,7 +175,7 @@ extension NavigatorStateExtension on _i8.NavigationService {
   }
 
   Future<dynamic> navigateToForgotPassView({
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -185,6 +212,23 @@ extension NavigatorStateExtension on _i8.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.homeView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToResetEmailView({
+    _i8.Key? key,
+    required String email,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.resetEmailView,
+        arguments: ResetEmailViewArguments(key: key, email: email),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

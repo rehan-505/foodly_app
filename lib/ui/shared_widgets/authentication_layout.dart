@@ -123,7 +123,7 @@ class AuthenticationLayout extends StatelessWidget {
             ),
           ),
           verticalSpaceRegular,
-          authScreenType == AuthScreenType.forgetPass ? SizedBox() :GestureDetector(
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :GestureDetector(
               onTap: onGoToOtherPageTapped,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -150,14 +150,14 @@ class AuthenticationLayout extends StatelessWidget {
               'By signing up you agree to our terms, conditions and privacy policy.',
             ),
           verticalSpaceMedium,
-          authScreenType == AuthScreenType.forgetPass ? SizedBox() :
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :
           Align(
               alignment: Alignment.center,
               child: CustomText.body(
                 'Or',
               )),
           verticalSpaceRegular,
-          authScreenType == AuthScreenType.forgetPass ? SizedBox() :FacebookAuthButton(
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :FacebookAuthButton(
             materialStyle: const ButtonStyle(
                 alignment: Alignment.centerLeft
 
@@ -175,7 +175,7 @@ class AuthenticationLayout extends StatelessWidget {
           ),
 
           verticalSpaceRegular,
-          authScreenType == AuthScreenType.forgetPass ? SizedBox() :GoogleAuthButton(
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :GoogleAuthButton(
             onPressed: onSignInWithGoogle ?? () {},
             text: '        CONNECT WITH GOOGLE',
             style: const AuthButtonStyle(

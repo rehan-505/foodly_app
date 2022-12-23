@@ -1,13 +1,9 @@
-import 'package:foodly_app/app/app.locator.dart';
-import 'package:foodly_app/services/auth_service.dart';
-
 import '../../../app/app.router.dart';
 import '../../base/authentication_viewmodel.dart';
 import '../../common/global_functions.dart';
 
 class SignUpViewModel extends AuthenticationViewModel{
-  SignUpViewModel() : super(successRoute: Routes.loginView);
-  final AuthService authService = locator<AuthService>();
+  SignUpViewModel() : super();
 
   bool passVisible = true;
   String? emailErrorText;

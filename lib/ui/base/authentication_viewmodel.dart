@@ -3,11 +3,14 @@ import 'package:stacked_services/stacked_services.dart';
 import '../../app/app.locator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../services/auth_service.dart';
+
 abstract class AuthenticationViewModel extends FormViewModel {
 
+  final AuthService authService = locator<AuthService>();
+
   final navigationService = locator<NavigationService>();
-  final String successRoute;
-  AuthenticationViewModel({required this.successRoute});
+  AuthenticationViewModel();
 
   @override
   void setFormStatus() {}
@@ -16,6 +19,8 @@ abstract class AuthenticationViewModel extends FormViewModel {
     try {
       print('into save data');
       await runBusyFuture(runAuthentication(), throwException: true,);
+      print('save data completed');
+
 
       // await _handleAuthenticationResponse(result);
     }
