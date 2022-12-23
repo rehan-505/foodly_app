@@ -1,10 +1,13 @@
-import 'package:stacked/stacked.dart';
+import 'package:foodly_app/app/app.locator.dart';
+import 'package:foodly_app/services/auth_service.dart';
+import 'package:foodly_app/ui/views/signup/signup_view.form.dart';
 
 import '../../../app/app.router.dart';
 import '../../base/authentication_viewmodel.dart';
 
 class SignUpViewModel extends AuthenticationViewModel{
   SignUpViewModel() : super(successRoute: Routes.loginView);
+  final AuthService authService = locator<AuthService>();
 
   bool passVisible = true;
 
@@ -20,7 +23,7 @@ class SignUpViewModel extends AuthenticationViewModel{
   @override
   Future runAuthentication() async{
     // TODO: implement runAuthentication
-    await Future.delayed(Duration(seconds: 3));
+    await authService.signUpWithEmailAndPass(emailValue, passwordValue!);
     return;
   }
 

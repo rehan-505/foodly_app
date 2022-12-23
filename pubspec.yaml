@@ -54,6 +54,8 @@ dev_dependencies:
 
   stacked_generator: ^0.8.0
   mockito: ^5.1.0
+  firebase_auth: ^4.2.1
+  firebase_core: ^2.4.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

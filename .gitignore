@@ -1,2 +1,12 @@
 # Project exclude paths
 /.dart_tool/
+/.flutter-plugins
+/.flutter-plugins-dependencies
+/android/
+/android
+/.idea/
+/linux/
+/windows/
+/macos/
+/ios/
+

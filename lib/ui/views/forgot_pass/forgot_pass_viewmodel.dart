@@ -19,8 +19,6 @@ class ForgotPassViewModel extends AuthenticationViewModel{
   @override
   Future runAuthentication() async{
     // TODO: implement runAuthentication
-    await Future.delayed(Duration(seconds: 3));
-    return;
   }
 
   void navigateToSignUp() =>

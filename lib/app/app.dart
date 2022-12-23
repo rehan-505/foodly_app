@@ -1,3 +1,4 @@
+import 'package:foodly_app/services/auth_service.dart';
 import 'package:foodly_app/ui/views/forgot_pass/forgot_pass_view.dart';
 import 'package:foodly_app/ui/views/login/login_view.dart';
 import 'package:foodly_app/ui/views/signup/signup_view.dart';
@@ -14,6 +15,7 @@ import 'package:foodly_app/ui/views/onboarding/onboarding_view.dart';
 // @stacked-route
 ], dependencies: [
   LazySingleton(classType: NavigationService),
+  LazySingleton(classType: AuthService)
   // LazySingleton(classType: DialogService),
   // LazySingleton(classType: BottomSheetService),
   // @stacked-service
