@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:foodly_app/enums/authscreen_type.dart';
-import 'package:foodly_app/ui/views/signup/signup_view.form.dart';
 import 'package:foodly_app/ui/views/signup/signup_viewmodel.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
 
 import '../../shared_widgets/authentication_layout.dart';
 
-@FormView(fields: [
-  FormTextField(name: 'name'),
-  FormTextField(name: 'email'),
-  FormTextField(name: 'password'),
-])
-class SignupView extends StatelessWidget with $SignupView {
-  SignupView({Key? key}) : super(key: key);
+
+class SignupView extends StatelessWidget {
+  const SignupView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,32 +19,34 @@ class SignupView extends StatelessWidget with $SignupView {
             busy: model.isBusy,
             onMainButtonTapped: model.saveData,
             onGoToOtherPageTapped: model.navigateToLogin,
-            validationMessage: "",
+            validationMessage: model.validationMessage,
             title: 'Create Account',
             subtitle: 'Enter your Name, Email and Password for sign up.',
             mainButtonTitle: 'SIGN UP',
             form: Column(
               children: [
-                TextField(
-                  decoration: const InputDecoration(label: Text('FULL NAME', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Name here",
-                      suffixIcon: Icon(Icons.person, color: Colors.grey,)
+                TextFormField(
+                  decoration:  InputDecoration(errorText: model.nameErrorText ,label: const Text('FULL NAME', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Name here",
+                      suffixIcon: const Icon(Icons.person, color: Colors.grey,)
                   ),
-                  controller: nameController,
+                  onChanged: model.validateName,
                 ),
-                TextField(
-                  decoration: const InputDecoration(label: Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
+                TextFormField(
+                  decoration:  InputDecoration(errorText: model.emailErrorText,label: Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
                       suffixIcon: Icon(Icons.email, color: Colors.grey,)
                   ),
-                  controller: emailController,
+                  onChanged: model.validateEmail,
+
                 ),
-                TextField(
+                TextFormField(
                   obscureText: model.passVisible,
-                  decoration: InputDecoration(label: const Text('PASSWORD', style: TextStyle(fontSize: 12),),hintText: "Enter Your Password here",
+                  decoration: InputDecoration(errorText: model.passErrorText,label: Text('PASSWORD', style: TextStyle(fontSize: 12),),hintText: "Enter Your Password here",
                       suffixIcon: InkWell(
                           onTap: model.eyePressed,
                           child: Icon(Icons.remove_red_eye, color: model.passVisible ? Colors.grey : null,))
                   ),
-                  controller: passwordController,
+                  onChanged: model.validatePass,
+
                 ),
               ],
             ),

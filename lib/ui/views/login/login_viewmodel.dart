@@ -25,7 +25,7 @@ class LoginViewModel extends AuthenticationViewModel{
 
 
   @override
-  Future<bool> runAuthentication() async{
+  Future runAuthentication() async{
 
     if(email==null ) {
       emailErrorText = "Email is required";
@@ -40,11 +40,9 @@ class LoginViewModel extends AuthenticationViewModel{
       return false;
     }
 
-
-
-    // TODO: implement runAuthentication
-    return (await authService.signInWithEmailAndPass(email!, passValue!));
-
+    if(await authService.signInWithEmailAndPass(email!, passValue!)){
+      navigationService.navigateTo(Routes.homeView);
+    }
   }
 
   void navigateToSignUp() =>
