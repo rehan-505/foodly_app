@@ -31,7 +31,7 @@ const TextStyle headlineStyle = TextStyle(
 
 const TextStyle bodyStyle = TextStyle(
   fontSize: 16,
-  fontWeight: FontWeight.w400,
+  fontWeight: FontWeight.w100,
 );
 
 const TextStyle subheadingStyle = TextStyle(

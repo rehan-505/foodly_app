@@ -64,10 +64,7 @@ class AuthenticationLayout extends StatelessWidget {
           ),
           verticalSpaceMedium,
           verticalSpaceRegular,
-          Text(
-            title!,
-            style: TextStyle(fontSize: 34),
-          ),
+CustomText.headline34(title!),
           verticalSpaceSmall,
           Align(
             alignment: Alignment.centerLeft,

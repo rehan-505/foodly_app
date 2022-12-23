@@ -67,6 +67,8 @@ flutter:
     - family: SFProText
       fonts:
         - asset: assets/fonts/FontsFree-Net-SFProText-Regular.ttf
+        - asset: assets/fonts/SFPRODISPLAYBOLD.OTF
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

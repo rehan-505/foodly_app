@@ -20,6 +20,9 @@ class CustomText extends StatelessWidget {
   const CustomText.headline(this.text, {TextAlign align = TextAlign.start})
       : style = headlineStyle,
         alignment = align;
+  CustomText.headline34(this.text, {TextAlign align = TextAlign.start})
+      : style = headlineStyle.copyWith(fontSize: 34,fontWeight: FontWeight.w600),
+        alignment = align;
   const CustomText.subheading(this.text, {TextAlign align = TextAlign.start})
       : style = subheadingStyle,
         alignment = align;

@@ -28,7 +28,7 @@ class OnboardingView extends StatelessWidget {
                 }),
 
             Positioned(
-              bottom: 80,
+              bottom: 60,
               left: 0,
               right: 0,
 
@@ -38,7 +38,7 @@ class OnboardingView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const ThreeDots(),
-                    SizedBox(height: resHeight(context, 40),),
+                    SizedBox(height: resHeight(context, 60),),
 
 
                     GestureDetector(
@@ -77,15 +77,32 @@ class OnboardingView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: resHeight(context, 90),),
-          SvgPicture.asset(imgPath, height: 383,),
-          CustomText.headline(titleText),
-          SizedBox(height: resHeight(context, 20),),
-          CustomText.body(
-            subtitle,
-            color: kcSubtitleGreyColor,
-            align: TextAlign.center,
+
+          Expanded(flex:2,child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SvgPicture.asset(imgPath),
+              index!=0?SizedBox(height: 48,):SizedBox(height: 20,)
+            ],
+          )),
+          Flexible(
+            flex: 2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CustomText.headline(titleText),
+                SizedBox(height: resHeight(context, 20),),
+                CustomText.body(
+                  subtitle,
+                  color: kcSubtitleGreyColor,
+                  align: TextAlign.center,
+                ),
+                SizedBox(height: 120,)
+              ],
+            ),
           ),
 
         ],
