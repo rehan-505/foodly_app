@@ -156,7 +156,8 @@ CustomText.headline34(title!),
           verticalSpaceRegular,
           (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :FacebookAuthButton(
             materialStyle: const ButtonStyle(
-                alignment: Alignment.centerLeft
+                alignment: Alignment.centerLeft,
+
 
             ),
             onPressed: () {},
@@ -183,7 +184,52 @@ CustomText.headline34(title!),
               height: 50,
               textStyle: TextStyle(color: Colors.white),
             ),
+          ),
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              verticalSpaceRegular,
+              InkWell(
+                onTap: onMainButtonTapped,
+                child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: kcPrimaryColorDark,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: busy
+                      ? const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation(Colors.white),
+                  )
+                      :  Row(
+
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(left: 38, right: 20),
+                        padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+
+
+                          ),
+                          child: const Icon(Icons.phone, color: Colors.green,)),
+                      Text(
+                        "        Sign In With Phone".toUpperCase(),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 14),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
           )
+
         ],
       ),
     );

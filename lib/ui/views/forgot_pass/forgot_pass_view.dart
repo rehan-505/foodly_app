@@ -4,6 +4,7 @@ import 'package:foodly_app/ui/views/forgot_pass/forgot_pass_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
+import '../../common/app_colors.dart';
 import '../../shared_widgets/authentication_layout.dart';
 import 'forgot_pass_view.form.dart';
 
@@ -29,7 +30,16 @@ class ForgotPassView extends StatelessWidget with $ForgotPassView {
               children: [
                 TextField(
                   decoration:  InputDecoration(errorText: model.emailErrorText,label: const Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
-                      suffixIcon: const Icon(Icons.email, color: Colors.grey,)
+                      suffixIcon: const Icon(Icons.email, color: Colors.grey,),
+                    filled: true,
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: kcLightGrey)
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: kcLightGrey)
+                    ),
+                    fillColor: kcVeryLightGrey,
+
                   ),
                   onChanged: model.validateEmail,
                 ),
