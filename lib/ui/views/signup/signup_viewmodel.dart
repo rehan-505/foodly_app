@@ -21,7 +21,6 @@ class SignUpViewModel extends AuthenticationViewModel{
   @override
   Future runAuthentication() async{
 
-    print('into sign up run auth');
 
     if(email==null ) {
       emailErrorText = "Email is required";
@@ -85,6 +84,10 @@ class SignUpViewModel extends AuthenticationViewModel{
     nameValue = x!;
 
 
+  }
+
+  void navigateToPhoneScreen(){
+    navigationService.navigateTo(Routes.phoneAuthView);
   }
 
 }

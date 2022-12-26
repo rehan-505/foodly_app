@@ -57,6 +57,7 @@ dev_dependencies:
   firebase_auth: ^4.2.1
   firebase_core: ^2.4.0
   intl_phone_field: ^3.1.0
+  pin_code_fields: ^7.4.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

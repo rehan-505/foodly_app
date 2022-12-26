@@ -19,7 +19,7 @@ class LoginView extends StatelessWidget {
 
         builder: (context, model, child) => Scaffold(
             body: AuthenticationLayout(
-
+              onSignInWithPhone: model.navigateToPhoneScreen,
               busy: model.isBusy,
               onMainButtonTapped: model.saveData,
               onGoToOtherPageTapped: model.navigateToSignUp,
@@ -30,13 +30,13 @@ class LoginView extends StatelessWidget {
               form: Column(
                 children: [
                   TextFormField(
-                    decoration: InputDecoration(errorText: model.emailErrorText,label: Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
+                    decoration: InputDecoration(errorText: model.emailErrorText,label: const Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
                         suffixIcon: const Icon(Icons.email, color: Colors.grey,),
                       filled: true,
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: kcLightGrey)
                       ),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: kcLightGrey)
                       ),
                       fillColor: kcVeryLightGrey,
@@ -53,10 +53,10 @@ class LoginView extends StatelessWidget {
                     obscureText: model.passVisible,
                     decoration: InputDecoration(
                         filled: true,
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: kcLightGrey)
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: kcLightGrey)
                         ),
                         fillColor: kcVeryLightGrey,

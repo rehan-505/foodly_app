@@ -25,6 +25,7 @@ class SignupView extends StatelessWidget {
             title: 'Create Account',
             subtitle: 'Enter your Name, Email and Password for sign up.',
             mainButtonTitle: 'SIGN UP',
+            onSignInWithPhone: model.navigateToPhoneScreen,
             form: Column(
               children: [
                 TextFormField(
