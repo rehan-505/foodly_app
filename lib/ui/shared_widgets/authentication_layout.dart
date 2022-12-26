@@ -64,10 +64,7 @@ class AuthenticationLayout extends StatelessWidget {
           ),
           verticalSpaceMedium,
           verticalSpaceRegular,
-          Text(
-            title!,
-            style: TextStyle(fontSize: 34),
-          ),
+CustomText.headline34(title!),
           verticalSpaceSmall,
           Align(
             alignment: Alignment.centerLeft,
@@ -123,7 +120,7 @@ class AuthenticationLayout extends StatelessWidget {
             ),
           ),
           verticalSpaceRegular,
-          authScreenType == AuthScreenType.forgetPass ? SizedBox() :GestureDetector(
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :GestureDetector(
               onTap: onGoToOtherPageTapped,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -150,16 +147,17 @@ class AuthenticationLayout extends StatelessWidget {
               'By signing up you agree to our terms, conditions and privacy policy.',
             ),
           verticalSpaceMedium,
-          authScreenType == AuthScreenType.forgetPass ? SizedBox() :
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :
           Align(
               alignment: Alignment.center,
               child: CustomText.body(
                 'Or',
               )),
           verticalSpaceRegular,
-          authScreenType == AuthScreenType.forgetPass ? SizedBox() :FacebookAuthButton(
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :FacebookAuthButton(
             materialStyle: const ButtonStyle(
-                alignment: Alignment.centerLeft
+                alignment: Alignment.centerLeft,
+
 
             ),
             onPressed: () {},
@@ -175,7 +173,7 @@ class AuthenticationLayout extends StatelessWidget {
           ),
 
           verticalSpaceRegular,
-          authScreenType == AuthScreenType.forgetPass ? SizedBox() :GoogleAuthButton(
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :GoogleAuthButton(
             onPressed: onSignInWithGoogle ?? () {},
             text: '        CONNECT WITH GOOGLE',
             style: const AuthButtonStyle(
@@ -186,7 +184,52 @@ class AuthenticationLayout extends StatelessWidget {
               height: 50,
               textStyle: TextStyle(color: Colors.white),
             ),
+          ),
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              verticalSpaceRegular,
+              InkWell(
+                onTap: onMainButtonTapped,
+                child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: kcPrimaryColorDark,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: busy
+                      ? const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation(Colors.white),
+                  )
+                      :  Row(
+
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(left: 38, right: 20),
+                        padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+
+
+                          ),
+                          child: const Icon(Icons.phone, color: Colors.green,)),
+                      Text(
+                        "        Sign In With Phone".toUpperCase(),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 14),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
           )
+
         ],
       ),
     );

@@ -1,26 +1,51 @@
-import 'package:stacked/stacked.dart';
-
 import '../../../app/app.router.dart';
 import '../../base/authentication_viewmodel.dart';
+import '../../common/global_functions.dart';
 
 class SignUpViewModel extends AuthenticationViewModel{
-  SignUpViewModel() : super(successRoute: Routes.loginView);
+  SignUpViewModel() : super();
 
   bool passVisible = true;
+  String? emailErrorText;
+  String? passErrorText;
+  String? nameErrorText;
+  String? email;
+  String? passValue;
+  String? nameValue;
 
   eyePressed(){
     passVisible = !passVisible;
     notifyListeners();
   }
 
-  Future saveData() async{
-
-  }
-
   @override
   Future runAuthentication() async{
-    // TODO: implement runAuthentication
-    await Future.delayed(Duration(seconds: 3));
+
+    print('into sign up run auth');
+
+    if(email==null ) {
+      emailErrorText = "Email is required";
+      notifyListeners();
+    }
+    if (passValue == null ){
+      passErrorText = "Password is required";
+      notifyListeners();
+    }
+    if (nameValue == null ){
+      nameErrorText = "Name is required";
+      notifyListeners();
+    }
+
+
+    if(email==null|| passValue == null ||  nameValue==null || passErrorText !=null || emailErrorText!=null || nameErrorText != null){
+      return false;
+    }
+
+
+    final bool result = await authService.signUpWithEmailAndPass(email, passValue!,name: nameValue);
+    if(result){
+      navigationService.navigateTo(Routes.homeView);
+    }
     return;
   }
 
@@ -30,5 +55,36 @@ class SignUpViewModel extends AuthenticationViewModel{
 
   void navigateBack() =>
       navigationService.back();
+
+  void validateEmail(String? x){
+    emailErrorText = emailValidation(x);
+    notifyListeners();
+
+    email = x!;
+
+
+  }
+
+  void validatePass(String? x){
+
+    passErrorText = passwordValidation(x);
+    notifyListeners();
+
+
+    passValue = x!;
+
+
+  }
+
+  void validateName(String? x){
+
+    nameErrorText = generalValidation(x);
+    notifyListeners();
+
+
+    nameValue = x!;
+
+
+  }
 
 }

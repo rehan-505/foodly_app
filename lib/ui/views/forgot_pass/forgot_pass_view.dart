@@ -4,6 +4,7 @@ import 'package:foodly_app/ui/views/forgot_pass/forgot_pass_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
+import '../../common/app_colors.dart';
 import '../../shared_widgets/authentication_layout.dart';
 import 'forgot_pass_view.form.dart';
 
@@ -21,17 +22,26 @@ class ForgotPassView extends StatelessWidget with $ForgotPassView {
           body: AuthenticationLayout(
             busy: model.isBusy,
             onMainButtonTapped: model.saveData,
-            validationMessage: null,
+            validationMessage: model.validationMessage,
             title: 'Forgot Password',
             subtitle: 'Enter your email address and we will send you a reset instructions.',
             mainButtonTitle: 'RESET PASSWORD',
             form: Column(
               children: [
                 TextField(
-                  decoration: const InputDecoration(label: Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
-                      suffixIcon: Icon(Icons.email, color: Colors.grey,)
+                  decoration:  InputDecoration(errorText: model.emailErrorText,label: const Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
+                      suffixIcon: const Icon(Icons.email, color: Colors.grey,),
+                    filled: true,
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: kcLightGrey)
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: kcLightGrey)
+                    ),
+                    fillColor: kcVeryLightGrey,
+
                   ),
-                  controller: emailController,
+                  onChanged: model.validateEmail,
                 ),
               ],
             ),
