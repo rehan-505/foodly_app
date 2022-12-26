@@ -2,5 +2,6 @@ enum AuthScreenType {
   signIn,
   signUp,
   forgetPass,
-  resetEmailSent
+  resetEmailSent,
+  phoneAuth,
 }

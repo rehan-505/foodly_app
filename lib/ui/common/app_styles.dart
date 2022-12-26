@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:foodly_app/ui/common/app_colors.dart';
 
 // Text Styles
 
@@ -19,6 +20,8 @@ const TextStyle heading3Style = TextStyle(
   fontWeight: FontWeight.w600,
 );
 
+
+
 const TextStyle heading4Style = TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.w600,
@@ -34,6 +37,14 @@ const TextStyle bodyStyle = TextStyle(
   fontWeight: FontWeight.w100,
 );
 
+TextStyle greyBodyStyle16 = TextStyle(
+  fontSize: 16,
+  color: kcSubtitleGreyColor.withOpacity(0.75)
+  // fontWeight: FontWeight.w100,
+
+);
+
+
 const TextStyle subheadingStyle = TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.w400,
@@ -42,4 +53,10 @@ const TextStyle subheadingStyle = TextStyle(
 const TextStyle captionStyle = TextStyle(
   fontSize: 12,
   fontWeight: FontWeight.w400,
+);
+
+const TextStyle subtitleStyle = TextStyle(
+  fontSize: 12,
+  fontWeight: FontWeight.w400,
+  color: kcSubtitleGreyColor
 );

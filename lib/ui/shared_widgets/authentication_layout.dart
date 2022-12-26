@@ -64,15 +64,16 @@ class AuthenticationLayout extends StatelessWidget {
           ),
           verticalSpaceMedium,
           verticalSpaceRegular,
-CustomText.headline34(title!),
+          authScreenType==AuthScreenType.phoneAuth ? CustomText.headingThree(title!,align: TextAlign.center,) :  CustomText.headline34(title!),
           verticalSpaceSmall,
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: authScreenType==AuthScreenType.phoneAuth ? Alignment.center :  Alignment.centerLeft,
             child: SizedBox(
-              width: screenWidthPercentage(context, percentage: 0.7),
+              width: screenWidthPercentage(context, percentage: authScreenType==AuthScreenType.phoneAuth ? 0.8 : 0.7 ),
               child: CustomText.body(
                 subtitle!,
                 color: kcSubtitleGreyColor,
+                align: authScreenType==AuthScreenType.phoneAuth ? TextAlign.center : TextAlign.start,
               ),
             ),
           ),
@@ -120,7 +121,7 @@ CustomText.headline34(title!),
             ),
           ),
           verticalSpaceRegular,
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :GestureDetector(
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent || authScreenType == AuthScreenType.phoneAuth) ? SizedBox() :GestureDetector(
               onTap: onGoToOtherPageTapped,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -147,14 +148,14 @@ CustomText.headline34(title!),
               'By signing up you agree to our terms, conditions and privacy policy.',
             ),
           verticalSpaceMedium,
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth) ? SizedBox() :
           Align(
               alignment: Alignment.center,
               child: CustomText.body(
                 'Or',
               )),
           verticalSpaceRegular,
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :FacebookAuthButton(
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth) ? SizedBox() :FacebookAuthButton(
             materialStyle: const ButtonStyle(
                 alignment: Alignment.centerLeft,
 
@@ -173,7 +174,7 @@ CustomText.headline34(title!),
           ),
 
           verticalSpaceRegular,
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :GoogleAuthButton(
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth) ? SizedBox() :GoogleAuthButton(
             onPressed: onSignInWithGoogle ?? () {},
             text: '        CONNECT WITH GOOGLE',
             style: const AuthButtonStyle(
@@ -185,7 +186,7 @@ CustomText.headline34(title!),
               textStyle: TextStyle(color: Colors.white),
             ),
           ),
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent) ? SizedBox() :Column(
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth) ? SizedBox() :Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               verticalSpaceRegular,
