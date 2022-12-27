@@ -18,7 +18,7 @@ abstract class AuthenticationViewModel extends FormViewModel {
 
   Future saveData() async {
     try {
-      await runBusyFuture(runAuthentication(), throwException: true,);
+      await runBusyFuture(runAuthentication(), throwException: true );
       // await _handleAuthenticationResponse(result);
     }
     on FirebaseAuthException catch(e){

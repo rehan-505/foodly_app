@@ -99,7 +99,7 @@ class AuthenticationLayout extends StatelessWidget {
               color: Colors.red,
             ),
           if ((validationMessage != null) && (validationMessage!.isNotEmpty)) verticalSpaceRegular,
-          GestureDetector(
+          InkWell(
             onTap: onMainButtonTapped,
             child: Container(
               width: double.infinity,

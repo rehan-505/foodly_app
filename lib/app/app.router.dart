@@ -5,18 +5,17 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i10;
+import 'package:flutter/material.dart' as _i9;
 import 'package:flutter/material.dart';
 import 'package:foodly_app/ui/views/forgot_pass/forgot_pass_view.dart' as _i4;
 import 'package:foodly_app/ui/views/home/home_view.dart' as _i6;
 import 'package:foodly_app/ui/views/login/login_view.dart' as _i2;
 import 'package:foodly_app/ui/views/onboarding/onboarding_view.dart' as _i5;
 import 'package:foodly_app/ui/views/phone_auth/phone_auth_view.dart' as _i8;
-import 'package:foodly_app/ui/views/phone_otp/phone_otp_view.dart' as _i9;
 import 'package:foodly_app/ui/views/reset_email/reset_email_view.dart' as _i7;
 import 'package:foodly_app/ui/views/signup/signup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i11;
+import 'package:stacked_services/stacked_services.dart' as _i10;
 
 class Routes {
   static const loginView = '/login-view';
@@ -33,8 +32,6 @@ class Routes {
 
   static const phoneAuthView = '/phone-auth-view';
 
-  static const phoneOtpView = '/phone-otp-view';
-
   static const all = <String>{
     loginView,
     signupView,
@@ -43,7 +40,6 @@ class Routes {
     homeView,
     resetEmailView,
     phoneAuthView,
-    phoneOtpView,
   };
 }
 
@@ -76,10 +72,6 @@ class StackedRouter extends _i1.RouterBase {
     _i1.RouteDef(
       Routes.phoneAuthView,
       page: _i8.PhoneAuthView,
-    ),
-    _i1.RouteDef(
-      Routes.phoneOtpView,
-      page: _i9.PhoneOtpView,
     ),
   ];
 
@@ -130,15 +122,7 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i8.PhoneAuthView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) =>  _i8.PhoneAuthView(),
-        settings: data,
-      );
-    },
-    _i9.PhoneOtpView: (data) {
-      final args = data.getArgs<PhoneOtpViewArguments>(nullOk: false);
-      return MaterialPageRoute<dynamic>(
-        builder: (context) =>
-            _i9.PhoneOtpView(key: args.key, phoneNo: args.phoneNo),
+        builder: (context) => const _i8.PhoneAuthView(),
         settings: data,
       );
     },
@@ -153,13 +137,13 @@ class StackedRouter extends _i1.RouterBase {
 class LoginViewArguments {
   const LoginViewArguments({this.key});
 
-  final _i10.Key? key;
+  final _i9.Key? key;
 }
 
 class ForgotPassViewArguments {
   const ForgotPassViewArguments({this.key});
 
-  final _i10.Key? key;
+  final _i9.Key? key;
 }
 
 class ResetEmailViewArguments {
@@ -168,25 +152,14 @@ class ResetEmailViewArguments {
     required this.email,
   });
 
-  final _i10.Key? key;
+  final _i9.Key? key;
 
   final String email;
 }
 
-class PhoneOtpViewArguments {
-  const PhoneOtpViewArguments({
-    this.key,
-    required this.phoneNo,
-  });
-
-  final _i10.Key? key;
-
-  final String phoneNo;
-}
-
-extension NavigatorStateExtension on _i11.NavigationService {
+extension NavigatorStateExtension on _i10.NavigationService {
   Future<dynamic> navigateToLoginView({
-    _i10.Key? key,
+    _i9.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -216,7 +189,7 @@ extension NavigatorStateExtension on _i11.NavigationService {
   }
 
   Future<dynamic> navigateToForgotPassView({
-    _i10.Key? key,
+    _i9.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -260,7 +233,7 @@ extension NavigatorStateExtension on _i11.NavigationService {
   }
 
   Future<dynamic> navigateToResetEmailView({
-    _i10.Key? key,
+    _i9.Key? key,
     required String email,
     int? routerId,
     bool preventDuplicates = true,
@@ -284,23 +257,6 @@ extension NavigatorStateExtension on _i11.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.phoneAuthView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
-  }
-
-  Future<dynamic> navigateToPhoneOtpView({
-    _i10.Key? key,
-    required String phoneNo,
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  }) async {
-    return navigateTo<dynamic>(Routes.phoneOtpView,
-        arguments: PhoneOtpViewArguments(key: key, phoneNo: phoneNo),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
