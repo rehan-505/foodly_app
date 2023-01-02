@@ -5,6 +5,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
 import '../../common/app_colors.dart';
+import '../../common/decorations.dart';
 import '../../shared_widgets/authentication_layout.dart';
 import 'forgot_pass_view.form.dart';
 
@@ -32,12 +33,9 @@ class ForgotPassView extends StatelessWidget with $ForgotPassView {
                   decoration:  InputDecoration(errorText: model.emailErrorText,label: const Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
                       suffixIcon: const Icon(Icons.email, color: Colors.grey,),
                     filled: true,
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: kcLightGrey)
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: kcLightGrey)
-                    ),
+                    enabledBorder: outlineInputBorderKcLightGrey,
+                    focusedBorder: outlineInputBorderKcLightGrey,
+                    errorBorder: outlineInputBorderKcLightGrey,
                     fillColor: kcVeryLightGrey,
 
                   ),

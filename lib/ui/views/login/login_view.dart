@@ -4,6 +4,7 @@ import 'package:foodly_app/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../common/app_colors.dart';
+import '../../common/decorations.dart';
 import '../../shared_widgets/authentication_layout.dart';
 
 import 'login_viewmodel.dart';
@@ -33,12 +34,9 @@ class LoginView extends StatelessWidget {
                     decoration: InputDecoration(errorText: model.emailErrorText,label: const Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
                         suffixIcon: const Icon(Icons.email, color: Colors.grey,),
                       filled: true,
-                      enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: kcLightGrey)
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: kcLightGrey)
-                      ),
+                      enabledBorder: outlineInputBorderKcLightGrey,
+                      focusedBorder: outlineInputBorderKcLightGrey,
+                      errorBorder: outlineInputBorderKcLightGrey,
                       fillColor: kcVeryLightGrey,
 
                     ),
@@ -53,12 +51,9 @@ class LoginView extends StatelessWidget {
                     obscureText: model.passVisible,
                     decoration: InputDecoration(
                         filled: true,
-                        enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: kcLightGrey)
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: kcLightGrey)
-                        ),
+                        enabledBorder: outlineInputBorderKcLightGrey,
+                        focusedBorder: outlineInputBorderKcLightGrey,
+                        errorBorder: outlineInputBorderKcLightGrey,
                         fillColor: kcVeryLightGrey,
                         errorText: model.passErrorText,label: const Text('PASSWORD', style: TextStyle(fontSize: 12),),hintText: "Enter Your Password here",
                     suffixIcon: InkWell(
@@ -80,5 +75,3 @@ class LoginView extends StatelessWidget {
     );
   }
 }
-
-
