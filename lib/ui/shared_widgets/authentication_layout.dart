@@ -66,16 +66,15 @@ class AuthenticationLayout extends StatelessWidget {
           ),
           verticalSpaceMedium,
           verticalSpaceRegular,
-          authScreenType==AuthScreenType.phoneAuth  || authScreenType == AuthScreenType.enterOtp ? CustomText.headingThree(title!,align: TextAlign.center,) :  CustomText.headline34(title!),
+          CustomText.headline34(title!),
           verticalSpaceSmall,
           Align(
-            alignment: authScreenType==AuthScreenType.phoneAuth ? Alignment.center :  Alignment.centerLeft,
+            alignment: Alignment.centerLeft,
             child: SizedBox(
-              width: screenWidthPercentage(context, percentage: authScreenType==AuthScreenType.phoneAuth || authScreenType == AuthScreenType.enterOtp ? 0.8 : 0.7 ),
+              width: screenWidthPercentage(context, percentage: 0.7),
               child: CustomText.body(
                 subtitle!,
                 color: kcSubtitleGreyColor,
-                align: authScreenType==AuthScreenType.phoneAuth || authScreenType == AuthScreenType.enterOtp ? TextAlign.center : TextAlign.start,
               ),
             ),
           ),
@@ -123,123 +122,135 @@ class AuthenticationLayout extends StatelessWidget {
             ),
           ),
           verticalSpaceRegular,
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent || authScreenType == AuthScreenType.phoneAuth) ? SizedBox() :GestureDetector(
-              onTap: onGoToOtherPageTapped,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children:  [
-                  Text(authScreenType == AuthScreenType.signIn ? 'Don\'t have an account?' : authScreenType == AuthScreenType.enterOtp ? "Didn't receive code?" : "Already have an account?",
-                      style: const TextStyle(
-                          fontSize: 12
-                      )
-                  ),
-                  horizontalSpaceTiny,
-                  Text(
-                    authScreenType == AuthScreenType.signIn ?
-                    'Create an account' : authScreenType == AuthScreenType.enterOtp ? "Resend" :  "Login",
+          isAuthOrReset() ? SizedBox() :GestureDetector(
+            onTap: onGoToOtherPageTapped,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:  [
+                Text(authScreenType == AuthScreenType.signIn ? 'Don\'t have an account?' : "Already have an account?",
                     style: const TextStyle(
+                        fontSize: 12
+                    )
+                ),
+                horizontalSpaceTiny,
+                Text(
+                  authScreenType == AuthScreenType.signIn ?
+                  'Create an account' : "Login",
+                  style: const TextStyle(
                       color: kcPrimaryColor,
                       fontSize: 12
-                    ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
+          ),
           if (showTermsText)
-            verticalSpace(30),
-
-            if (showTermsText)
             CustomText.body(
               'By signing up you agree to our terms, conditions and privacy policy.',
-              align: TextAlign.center,
-              color: kcSubtitleGreyColor,
             ),
           verticalSpaceMedium,
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth || authScreenType == AuthScreenType.enterOtp) ? SizedBox() :
-          Align(
-              alignment: Alignment.center,
-              child: CustomText.body(
-                'Or',
-              )),
-          verticalSpaceRegular,
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth || authScreenType == AuthScreenType.enterOtp) ? SizedBox() :FacebookAuthButton(
-            materialStyle: const ButtonStyle(
-                alignment: Alignment.centerLeft,
-
-
-            ),
-            onPressed: () {},
-            text: '        CONNECT WITH FACEBOOK',
-            style: const AuthButtonStyle(
-              buttonColor: Color(0xff395998),
-              iconSize: 24,
-              iconBackground: Colors.white,
-              buttonType: AuthButtonType.secondary,
-              height: 50,
-              textStyle: TextStyle(color: Colors.white),
-            ),
-          ),
-
-          verticalSpaceRegular,
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth  || authScreenType == AuthScreenType.enterOtp) ? SizedBox() :GoogleAuthButton(
-            onPressed: onSignInWithGoogle ?? () {},
-            text: '        CONNECT WITH GOOGLE',
-            style: const AuthButtonStyle(
-              buttonColor: Color(0xff4285F4),
-              iconSize: 24,
-              iconBackground: Colors.white,
-              buttonType: AuthButtonType.secondary,
-              height: 50,
-              textStyle: TextStyle(color: Colors.white),
-            ),
-          ),
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth || authScreenType == AuthScreenType.enterOtp ) ? SizedBox() :Column(
+          !(isAuthOrResetOrSignUp()) ?
+          Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              verticalSpaceRegular,
-              InkWell(
-                onTap: onSignInWithPhone,
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
+              Align(
                   alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: kcPrimaryColorDark,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: busy
-                      ? const CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation(Colors.white),
-                  )
-                      :  Row(
-
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(left: 38, right: 20),
-                        padding: const EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
+                  child: CustomText.body(
+                    'Or',
+                  )),
+              verticalSpaceRegular,
+              FacebookAuthButton(
+                materialStyle: const ButtonStyle(
+                  alignment: Alignment.centerLeft,
 
 
-                          ),
-                          child: const Icon(Icons.phone, color: Colors.green,)),
-                      Text(
-                        "        Sign In With Phone".toUpperCase(),
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 14),
-                      )
-                    ],
-                  ),
+                ),
+                onPressed: () {},
+                text: '        CONNECT WITH FACEBOOK',
+                style: const AuthButtonStyle(
+                  width: double.infinity,
+                  buttonColor: Color(0xff395998),
+                  iconSize: 24,
+                  iconBackground: Colors.white,
+                  buttonType: AuthButtonType.secondary,
+                  height: 50,
+                  textStyle: TextStyle(color: Colors.white),
                 ),
               ),
+
+              verticalSpaceRegular,
+              GoogleAuthButton(
+                onPressed: onSignInWithGoogle ?? () {},
+
+                text: '        CONNECT WITH GOOGLE',
+                style: const AuthButtonStyle(
+                  width: double.infinity,
+
+                  buttonColor: Color(0xff4285F4),
+                  iconSize: 24,
+                  iconBackground: Colors.white,
+                  buttonType: AuthButtonType.secondary,
+                  height: 50,
+                  textStyle: TextStyle(color: Colors.white),
+                ),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  verticalSpaceRegular,
+                  InkWell(
+                    onTap: onSignInWithPhone,
+                    child: Container(
+                      width: double.infinity,
+                      height: 50,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: kcPrimaryColorDark,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: busy
+                          ? const CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation(Colors.white),
+                      )
+                          :  Row(
+
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 38, right: 20),
+                              padding: const EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+
+
+                              ),
+                              child: const Icon(Icons.phone, color: Colors.green,)),
+                          Text(
+                            "        Sign In With Phone".toUpperCase(),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 14),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
-          )
+          ) : SizedBox()
 
         ],
       ),
     );
+  }
+
+  bool isAuthOrReset(){
+    return authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent;
+  }
+
+  bool isAuthOrResetOrSignUp(){
+    return authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent || authScreenType == AuthScreenType.signUp;
   }
 }

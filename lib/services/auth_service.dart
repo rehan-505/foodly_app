@@ -29,6 +29,28 @@ class AuthService {
 
   }
 
+  Future verifyPhone({
+    required String phone,
+    required void Function(PhoneAuthCredential) onVerificationCompleted,
+    required void Function(FirebaseAuthException) onVerificationFailed,
+    required void Function(String, int?) onCodeSent,
+    required void Function(String) onAutoRetrievalTimeout,
+  }) async{
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: phone,
+      verificationCompleted: onVerificationCompleted,
+      verificationFailed: onVerificationFailed,
+      codeSent: onCodeSent,
+      codeAutoRetrievalTimeout:  onAutoRetrievalTimeout,
+    );
+
+  }
+
+  Future<bool> signInWithPhoneCredential(PhoneAuthCredential phoneAuthCredential) async{
+    await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
+    return FirebaseAuth.instance.currentUser!=null;
+  }
+
 
 
 

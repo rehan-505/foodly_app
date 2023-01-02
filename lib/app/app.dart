@@ -8,7 +8,6 @@ import 'package:foodly_app/ui/views/onboarding/onboarding_view.dart';
 import 'package:foodly_app/ui/views/home/home_view.dart';
 import 'package:foodly_app/ui/views/reset_email/reset_email_view.dart';
 import 'package:foodly_app/ui/views/phone_auth/phone_auth_view.dart';
-import 'package:foodly_app/ui/views/phone_otp/phone_otp_view.dart';
 // @stacked-import
 
 @StackedApp(routes: [
@@ -19,7 +18,6 @@ import 'package:foodly_app/ui/views/phone_otp/phone_otp_view.dart';
 MaterialRoute(page: HomeView),
 MaterialRoute(page: ResetEmailView),
 MaterialRoute(page: PhoneAuthView),
-MaterialRoute(page: PhoneOtpView),
 // @stacked-route
 ], dependencies: [
   LazySingleton(classType: NavigationService),
