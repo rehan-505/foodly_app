@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodly_app/app/app.locator.dart';
 import 'package:foodly_app/ui/common/app_colors.dart';
-import 'package:foodly_app/ui/views/home/home_view.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';

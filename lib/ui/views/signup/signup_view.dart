@@ -4,6 +4,7 @@ import 'package:foodly_app/ui/common/app_colors.dart';
 import 'package:foodly_app/ui/views/signup/signup_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../common/decorations.dart';
 import '../../common/ui_helpers.dart';
 import '../../shared_widgets/authentication_layout.dart';
 
@@ -33,12 +34,8 @@ class SignupView extends StatelessWidget {
                     errorText: model.nameErrorText ,label: const Text('FULL NAME', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Name here",
                       suffixIcon: const Icon(Icons.person, color: Colors.grey,),
                     filled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kcLightGrey)
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: kcLightGrey)
-                    ),
+                    enabledBorder: outlineInputBorderKcLightGrey,
+                    focusedBorder: outlineInputBorderKcLightGrey,
                     fillColor: kcVeryLightGrey,
 
 
@@ -52,12 +49,8 @@ class SignupView extends StatelessWidget {
                   decoration:  InputDecoration(errorText: model.emailErrorText,label: const Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
                       suffixIcon: const Icon(Icons.email, color: Colors.grey,),
                     filled: true,
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: kcLightGrey)
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: kcLightGrey)
-                    ),
+                    enabledBorder: outlineInputBorderKcLightGrey,
+                    focusedBorder: outlineInputBorderKcLightGrey,
                     fillColor: kcVeryLightGrey,
 
                   ),
@@ -68,14 +61,10 @@ class SignupView extends StatelessWidget {
                 verticalSpaceTiny,
                 TextFormField(
                   obscureText: model.passVisible,
-                  decoration: InputDecoration(errorText: model.passErrorText,label: Text('PASSWORD', style: TextStyle(fontSize: 12),),hintText: "Enter Your Password here",
+                  decoration: InputDecoration(errorText: model.passErrorText,label: const Text('PASSWORD', style: TextStyle(fontSize: 12),),hintText: "Enter Your Password here",
                       filled: true,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: kcLightGrey)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: kcLightGrey)
-                      ),
+                      enabledBorder: outlineInputBorderKcLightGrey,
+                      focusedBorder: outlineInputBorderKcLightGrey,
                       fillColor: kcVeryLightGrey,
 
                       suffixIcon: InkWell(
@@ -87,7 +76,6 @@ class SignupView extends StatelessWidget {
                 ),
               ],
             ),
-            onSignInWithGoogle: (){},
             appBarTitle: 'Sign Up',
             onBackPressed: null,
           )),

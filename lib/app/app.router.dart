@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart' as _i8;
 import 'package:flutter/material.dart';
 import 'package:foodly_app/ui/views/forgot_pass/forgot_pass_view.dart' as _i4;
-import 'package:foodly_app/ui/views/home/home_view.dart' as _i6;
 import 'package:foodly_app/ui/views/login/login_view.dart' as _i2;
 import 'package:foodly_app/ui/views/onboarding/onboarding_view.dart' as _i5;
 import 'package:foodly_app/ui/views/reset_email/reset_email_view.dart' as _i7;
@@ -58,10 +57,6 @@ class StackedRouter extends _i1.RouterBase {
       page: _i5.OnboardingView,
     ),
     _i1.RouteDef(
-      Routes.homeView,
-      page: _i6.HomeView,
-    ),
-    _i1.RouteDef(
       Routes.resetEmailView,
       page: _i7.ResetEmailView,
     ),
@@ -95,12 +90,6 @@ class StackedRouter extends _i1.RouterBase {
     _i5.OnboardingView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.OnboardingView(),
-        settings: data,
-      );
-    },
-    _i6.HomeView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const _i6.HomeView(),
         settings: data,
       );
     },
