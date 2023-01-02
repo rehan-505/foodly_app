@@ -33,10 +33,10 @@ class SignupView extends StatelessWidget {
                     errorText: model.nameErrorText ,label: const Text('FULL NAME', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Name here",
                       suffixIcon: const Icon(Icons.person, color: Colors.grey,),
                     filled: true,
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: kcLightGrey)
                     ),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: kcLightGrey)
                     ),
                     fillColor: kcVeryLightGrey,
@@ -52,10 +52,10 @@ class SignupView extends StatelessWidget {
                   decoration:  InputDecoration(errorText: model.emailErrorText,label: const Text('EMAIL ADDRESS', style: TextStyle(fontSize: 12, ),),hintText: "Enter Your Email here",
                       suffixIcon: const Icon(Icons.email, color: Colors.grey,),
                     filled: true,
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: kcLightGrey)
                     ),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: kcLightGrey)
                     ),
                     fillColor: kcVeryLightGrey,
@@ -68,12 +68,12 @@ class SignupView extends StatelessWidget {
                 verticalSpaceTiny,
                 TextFormField(
                   obscureText: model.passVisible,
-                  decoration: InputDecoration(errorText: model.passErrorText,label: Text('PASSWORD', style: TextStyle(fontSize: 12),),hintText: "Enter Your Password here",
+                  decoration: InputDecoration(errorText: model.passErrorText,label: const Text('PASSWORD', style: TextStyle(fontSize: 12),),hintText: "Enter Your Password here",
                       filled: true,
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: kcLightGrey)
                       ),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: kcLightGrey)
                       ),
                       fillColor: kcVeryLightGrey,
