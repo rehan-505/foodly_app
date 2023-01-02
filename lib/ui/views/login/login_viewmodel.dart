@@ -1,8 +1,6 @@
 import 'package:foodly_app/ui/common/global_functions.dart';
 
-import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
-import '../../../services/auth_service.dart';
 import '../../base/authentication_viewmodel.dart';
 
 class LoginViewModel extends AuthenticationViewModel{
@@ -61,14 +59,13 @@ class LoginViewModel extends AuthenticationViewModel{
   }
 
   void validatePass(String? x){
-
    passErrorText = passwordValidation(x);
       notifyListeners();
-
-
       passValue = x!;
+  }
 
-
+  void navigateToPhoneScreen(){
+    navigationService.navigateTo(Routes.phoneAuthView);
   }
 
 

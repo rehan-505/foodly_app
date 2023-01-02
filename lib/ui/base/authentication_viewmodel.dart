@@ -1,3 +1,4 @@
+import 'package:foodly_app/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../app/app.locator.dart';
@@ -17,11 +18,7 @@ abstract class AuthenticationViewModel extends FormViewModel {
 
   Future saveData() async {
     try {
-      print('into save data');
       await runBusyFuture(runAuthentication(), throwException: true,);
-      print('save data completed');
-
-
       // await _handleAuthenticationResponse(result);
     }
     on FirebaseAuthException catch(e){

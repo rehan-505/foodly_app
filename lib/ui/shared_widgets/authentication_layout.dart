@@ -18,6 +18,8 @@ class AuthenticationLayout extends StatelessWidget {
   final void Function()? onForgotPassword;
   final void Function()? onBackPressed;
   final void Function()? onSignInWithGoogle;
+  final void Function()? onSignInWithPhone;
+
   final String? validationMessage;
   final bool busy;
   final AuthScreenType authScreenType;
@@ -35,7 +37,7 @@ class AuthenticationLayout extends StatelessWidget {
     this.onSignInWithGoogle,
     this.validationMessage,
     this.showTermsText = false,
-    this.busy = false, required this.appBarTitle, required this.authScreenType,
+    this.busy = false, required this.appBarTitle, required this.authScreenType, this.onSignInWithPhone,
   }) : super(key: key);
 
   @override
@@ -64,16 +66,16 @@ class AuthenticationLayout extends StatelessWidget {
           ),
           verticalSpaceMedium,
           verticalSpaceRegular,
-          authScreenType==AuthScreenType.phoneAuth ? CustomText.headingThree(title!,align: TextAlign.center,) :  CustomText.headline34(title!),
+          authScreenType==AuthScreenType.phoneAuth  || authScreenType == AuthScreenType.enterOtp ? CustomText.headingThree(title!,align: TextAlign.center,) :  CustomText.headline34(title!),
           verticalSpaceSmall,
           Align(
             alignment: authScreenType==AuthScreenType.phoneAuth ? Alignment.center :  Alignment.centerLeft,
             child: SizedBox(
-              width: screenWidthPercentage(context, percentage: authScreenType==AuthScreenType.phoneAuth ? 0.8 : 0.7 ),
+              width: screenWidthPercentage(context, percentage: authScreenType==AuthScreenType.phoneAuth || authScreenType == AuthScreenType.enterOtp ? 0.8 : 0.7 ),
               child: CustomText.body(
                 subtitle!,
                 color: kcSubtitleGreyColor,
-                align: authScreenType==AuthScreenType.phoneAuth ? TextAlign.center : TextAlign.start,
+                align: authScreenType==AuthScreenType.phoneAuth || authScreenType == AuthScreenType.enterOtp ? TextAlign.center : TextAlign.start,
               ),
             ),
           ),
@@ -126,16 +128,16 @@ class AuthenticationLayout extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:  [
-                  Text(authScreenType == AuthScreenType.signIn ? 'Don\'t have an account?' : "Already have an account?",
-                      style: TextStyle(
+                  Text(authScreenType == AuthScreenType.signIn ? 'Don\'t have an account?' : authScreenType == AuthScreenType.enterOtp ? "Didn't receive code?" : "Already have an account?",
+                      style: const TextStyle(
                           fontSize: 12
                       )
                   ),
                   horizontalSpaceTiny,
                   Text(
                     authScreenType == AuthScreenType.signIn ?
-                    'Create an account' : "Login",
-                    style: TextStyle(
+                    'Create an account' : authScreenType == AuthScreenType.enterOtp ? "Resend" :  "Login",
+                    style: const TextStyle(
                       color: kcPrimaryColor,
                       fontSize: 12
                     ),
@@ -144,18 +146,23 @@ class AuthenticationLayout extends StatelessWidget {
               ),
             ),
           if (showTermsText)
+            verticalSpace(30),
+
+            if (showTermsText)
             CustomText.body(
               'By signing up you agree to our terms, conditions and privacy policy.',
+              align: TextAlign.center,
+              color: kcSubtitleGreyColor,
             ),
           verticalSpaceMedium,
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth) ? SizedBox() :
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth || authScreenType == AuthScreenType.enterOtp) ? SizedBox() :
           Align(
               alignment: Alignment.center,
               child: CustomText.body(
                 'Or',
               )),
           verticalSpaceRegular,
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth) ? SizedBox() :FacebookAuthButton(
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth || authScreenType == AuthScreenType.enterOtp) ? SizedBox() :FacebookAuthButton(
             materialStyle: const ButtonStyle(
                 alignment: Alignment.centerLeft,
 
@@ -174,7 +181,7 @@ class AuthenticationLayout extends StatelessWidget {
           ),
 
           verticalSpaceRegular,
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth) ? SizedBox() :GoogleAuthButton(
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth  || authScreenType == AuthScreenType.enterOtp) ? SizedBox() :GoogleAuthButton(
             onPressed: onSignInWithGoogle ?? () {},
             text: '        CONNECT WITH GOOGLE',
             style: const AuthButtonStyle(
@@ -186,12 +193,12 @@ class AuthenticationLayout extends StatelessWidget {
               textStyle: TextStyle(color: Colors.white),
             ),
           ),
-          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth) ? SizedBox() :Column(
+          (authScreenType == AuthScreenType.forgetPass || authScreenType == AuthScreenType.resetEmailSent|| authScreenType == AuthScreenType.phoneAuth || authScreenType == AuthScreenType.enterOtp ) ? SizedBox() :Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               verticalSpaceRegular,
               InkWell(
-                onTap: onMainButtonTapped,
+                onTap: onSignInWithPhone,
                 child: Container(
                   width: double.infinity,
                   height: 50,

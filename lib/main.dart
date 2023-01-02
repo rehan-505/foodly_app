@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
 
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
-      home: const PhoneAuthView(),
+      // home:  PhoneAuthView(),
     );
   }
 }
