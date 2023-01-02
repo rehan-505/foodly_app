@@ -6,6 +6,7 @@ import 'package:foodly_app/ui/shared_widgets/authentication_layout.dart';
 import 'package:stacked/stacked.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../common/app_colors.dart';
+import '../../common/decorations.dart';
 import 'phone_auth_viewmodel.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -65,15 +66,9 @@ class PhoneAuthView extends StatelessWidget {
                       // labelText: "PHONE NUMBER",
                       // labelStyle: subtitleStyle,
                       filled: true,
-                      enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: kcLightGrey)
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: kcLightGrey)
-                      ),
-                      errorBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: kcLightGrey)
-                      ),
+                      enabledBorder: outlineInputBorderKcLightGrey,
+                      focusedBorder: outlineInputBorderKcLightGrey,
+                      errorBorder: outlineInputBorderKcLightGrey,
                       border: const OutlineInputBorder(
                           borderSide: BorderSide(color: kcLightGrey)
                       ),
