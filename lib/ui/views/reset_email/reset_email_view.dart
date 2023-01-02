@@ -22,7 +22,7 @@ class ResetEmailView extends StatelessWidget {
           subtitle: "We have sent a instructions email to ${model.email}",
           title: "Reset email sent",
           mainButtonTitle: "Send Again",
-          form: SizedBox(),
+          form: const SizedBox(),
           onBackPressed: model.navigateBack,
           onMainButtonTapped: model.saveData,
 
