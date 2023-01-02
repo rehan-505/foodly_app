@@ -85,7 +85,7 @@ class PhoneAuthView extends StatelessWidget {
 
 
                     ),
-                    style: greyBodyStyle16,
+                    style: greyBodyStyle16op75,
 
                   ),
                 ),

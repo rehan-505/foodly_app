@@ -12,6 +12,7 @@ class OnboardingViewModel extends BaseViewModel {
 
   modifyIndex(int index){
     currentIndex = index;
+
     notifyListeners();
   }
 
