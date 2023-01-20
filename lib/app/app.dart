@@ -21,7 +21,8 @@ MaterialRoute(page: PhoneAuthView),
 // @stacked-route
 ], dependencies: [
   LazySingleton(classType: NavigationService),
-  LazySingleton(classType: AuthService)
+  LazySingleton(classType: AuthService),
+
   // LazySingleton(classType: DialogService),
   // LazySingleton(classType: BottomSheetService),
   // @stacked-service
