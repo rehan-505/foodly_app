@@ -19,28 +19,29 @@ class OnboardingView extends StatelessWidget {
         body: Stack(
           children: [
             PageView.builder(
-              onPageChanged: model.modifyIndex,
+                onPageChanged: model.modifyIndex,
                 scrollDirection: Axis.horizontal,
                 itemCount: 3,
-                itemBuilder: (context,index){
-
-                  return _buildLayout(context, index, titleText: model.titlesList[index], subtitle: model.subtitles[index], imgPath: model.images[index]);
+                itemBuilder: (context, index) {
+                  return _buildLayout(context, index,
+                      titleText: model.titlesList[index],
+                      subtitle: model.subtitles[index],
+                      imgPath: model.images[index]);
                 }),
 
             Positioned(
               bottom: 60,
               left: 0,
               right: 0,
-
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const ThreeDots(),
-                    SizedBox(height: resHeight(context, 60),),
-
-
+                    SizedBox(
+                      height: resHeight(context, 60),
+                    ),
                     GestureDetector(
                       onTap: model.navigateToLogin,
                       child: Container(
@@ -65,28 +66,40 @@ class OnboardingView extends StatelessWidget {
               ),
             ),
             // SizedBox(height: resHeight(context, 80),)
-
           ],
         ),
       ),
     );
   }
 
-  _buildLayout(BuildContext context,int index,
-      {required String titleText, required String subtitle, required String imgPath}){
+  _buildLayout(BuildContext context, int index,
+      {required String titleText,
+      required String subtitle,
+      required String imgPath}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-
-          Expanded(flex:2,child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              SvgPicture.asset(imgPath),
-              index!=0?SizedBox(height: 48,):SizedBox(height: 20,)
-            ],
-          )),
+          Flexible(
+              flex: 2,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SvgPicture.asset(imgPath),
+                  index != 0
+                      ? const Flexible(
+                        child: SizedBox(
+                            height: 48,
+                          ),
+                      )
+                      : const Flexible(
+                        child: SizedBox(
+                            height: 20,
+                          ),
+                      )
+                ],
+              )),
           Flexible(
             flex: 2,
             child: Column(
@@ -94,26 +107,28 @@ class OnboardingView extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 CustomText.headline(titleText),
-                SizedBox(height: resHeight(context, 20),),
+                SizedBox(
+                  height: resHeight(context, 20),
+                ),
                 CustomText.body(
                   subtitle,
                   color: kcSubtitleGreyColor,
                   align: TextAlign.center,
                 ),
-                SizedBox(height: 120,)
+                const SizedBox(
+                  height: 120,
+                )
               ],
             ),
           ),
-
         ],
       ),
     );
   }
-
 }
 
 class ThreeDots extends ViewModelWidget<OnboardingViewModel> {
-  const ThreeDots({Key? key}) : super(key: key,reactive: true);
+  const ThreeDots({Key? key}) : super(key: key, reactive: true);
 
   @override
   Widget build(BuildContext context, OnboardingViewModel viewModel) {
@@ -123,26 +138,23 @@ class ThreeDots extends ViewModelWidget<OnboardingViewModel> {
           scrollDirection: Axis.horizontal,
           itemCount: 3,
           shrinkWrap: true,
-          itemBuilder: (context,i){
-            return  Padding(
+          itemBuilder: (context, i) {
+            return Padding(
               padding: const EdgeInsets.only(right: 8.0),
-              child: _buildDot(active: i==viewModel.currentIndex?true:false),
-            );}),
+              child:
+                  _buildDot(active: i == viewModel.currentIndex ? true : false),
+            );
+          }),
     );
   }
 
-  Widget _buildDot({bool active = false}){
+  Widget _buildDot({bool active = false}) {
     return Container(
       height: 5,
       width: 8,
       decoration: BoxDecoration(
           color: active ? kcPrimaryColor : kcSubtitleGreyColor.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(100)
-      ),
+          borderRadius: BorderRadius.circular(100)),
     );
   }
-
 }
-
-
-

@@ -29,6 +29,7 @@ MaterialRoute(page: StartUpView,initial: true),
 ], dependencies: [
   LazySingleton(classType: NavigationService),
   LazySingleton(classType: AuthService),
+
   LazySingleton(classType: PlacesService),
   LazySingleton(classType: LocationService),
 
