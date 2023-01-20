@@ -11,4 +11,8 @@ const Color kcVeryLightGrey = Color(0xFFFBFBFB);
 const Color kcVeryLightestGrey = Color(0x33686868);
 const Color kcBackgroundColor = kcDarkGreyColor;
 const Color kcSubtitleGreyColor = Color(0xFF868686);
+feature/search_places
+const Color kcGrey2 = Color(0xFFCAC8DA);
+const Color kcGrey3 = Color(0xFFD8D8D8);
 const Color kcWhite30opacity = Color(0x4DFFFFFF);
+
